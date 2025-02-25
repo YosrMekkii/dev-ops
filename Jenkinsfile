@@ -9,8 +9,8 @@ pipeline {
         stage('GIT') {
             steps {
                 git(
-                    branch: 'master',
-                    url: 'https://github.com/khalil27/dev-ops.git'
+                    branch: 'main',
+                    url: 'https://github.com/YosrMekkii/dev-ops.git'
                 )
             }
         }

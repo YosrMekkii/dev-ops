@@ -14,10 +14,14 @@ pipeline {
 
 
         stage('Deploy to Nexus') {
-             steps {
-                 sh """
-                 mvn deploy
-                 """
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'yosr', usernameVariable: 'yosr', passwordVariable: 'yosr')]) {
+                    sh """
+                        mvn deploy -DrepositoryId=deploymentRepo \
+                                   -Durl=http://172.17.0.1:8081/repository/maven-releases/ \
+                                   -Dusername=$NEXUS_USERNAME \
+                                   -Dpassword=$NEXUS_PASSWORD
+                    """
              }
          }
     }
